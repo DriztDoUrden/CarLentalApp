@@ -15,7 +15,7 @@ Rzeczy dotychczas zaimplementowane:
 
 W trakcie:
 
-- Stworzenie na podstawie zamówienia rachunku w formacie PDF i dodawanie go jako załącznik do potwierdzenia zamówienia
+- Stworzenie rachunku w formacie PDF i dodawanie go jako załącznik do mailowego potwierdzenia
 - Dodanie strony na hosting
 - Dokumentacja całego projektu
 - Przebudowana widoku realizującego podsumowanie zamówienia
