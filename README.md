@@ -20,3 +20,4 @@ W trakcie:
 - Dokumentacja całego projektu
 - Przebudowana widoku realizującego podsumowanie zamówienia
 - Edycja profilu przez użytkownika
+- Filtracja/Sortowanie rekordów
