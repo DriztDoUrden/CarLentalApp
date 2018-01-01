@@ -19,3 +19,4 @@ W trakcie:
 - Dodanie strony na hosting
 - Dokumentacja całego projektu
 - Przebudowana widoku realizującego podsumowanie zamówienia
+- Edycja profilu przez użytkownika
