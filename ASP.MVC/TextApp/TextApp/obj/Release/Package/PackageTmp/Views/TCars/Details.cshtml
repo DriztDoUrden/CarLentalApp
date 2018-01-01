@@ -1,0 +1,88 @@
+﻿@model TextApp.EntityFrameworkContext.TCars
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Mark @Model.Model</h2>
+
+<div style="margin-left:1%">
+    
+    <hr />
+    <dl style="width: 35%; float: left;">
+        <dt style="float:left">
+            @Html.DisplayNameFor(model => model.Mark)
+        </dt>
+        <a style="float:left">&nbsp;&nbsp;-&nbsp;&nbsp;</a>
+        <dd>
+            @Html.DisplayFor(model => model.Mark)
+        </dd>
+
+        <dt style="float:left">
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+        <a style="float:left">&nbsp;&nbsp;-&nbsp;&nbsp;</a>
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt style="float:left">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <a style="float:left">&nbsp;&nbsp;-&nbsp;&nbsp;</a>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt style="float:left">
+            @Html.DisplayNameFor(model => model.ImageSource)
+        </dt>
+        <a style="float:left">&nbsp;&nbsp;-&nbsp;&nbsp;</a>
+        <dd>
+            @Html.DisplayFor(model => model.ImageSource)
+        </dd>
+
+        <dt style="float:left">
+            @Html.DisplayNameFor(model => model.Transmission)
+        </dt>
+        <a style="float:left">&nbsp;&nbsp;-&nbsp;&nbsp;</a>
+        <dd>
+            @Html.DisplayFor(model => model.Transmission)
+        </dd>
+
+        <dt style="float:left">
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <a style="float:left">&nbsp;&nbsp;-&nbsp;&nbsp;</a>
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt style="float:left">
+            @Html.DisplayNameFor(model => model.Engine)
+        </dt>
+        <a style="float: left;">&nbsp;&nbsp;-&nbsp;&nbsp;</a>
+        <dd>
+            @Html.DisplayFor(model => model.Engine)
+        </dd>
+        <dt style="float:left">
+            @Html.DisplayNameFor(model => model.Airbag)
+        </dt>
+        <a style="float: left;">&nbsp;&nbsp;-&nbsp;&nbsp;</a>
+        <dd>
+            @Html.DisplayFor(model => model.Airbag)
+        </dd>
+
+    </dl>
+    <div>
+        <img class="img-border" src="@Url.Content(@Model.ImageSource.ToString())" />
+
+    </div>
+
+</div>
+<div class="no-color btnframe" style="float: left;">
+    <button class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) </button>
+</div>
+<div class="no-color btnframe" style="float: left;">
+    <button class="btn btn-default">@Html.ActionLink("Back to List", "Index") </button>
+</div>

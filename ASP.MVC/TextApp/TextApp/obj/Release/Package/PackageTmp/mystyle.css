@@ -1,0 +1,95 @@
+﻿.headerPage {
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+.bckground {
+    background-image: url('/background.jpg');
+    background-size:100%;
+    margin: 0;
+}
+li {
+    width: 150px;
+    margin: 0 auto;
+}
+.ClientCarBtns {
+    background-color: #333;
+    color: yellowgreen;
+    display: block;
+    margin-bottom: 3%;
+    border-radius: 10px;
+}
+
+.ClientCarBtns:hover {
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+}
+.img-border {
+    border-radius: 25px;
+}
+.btnframe {
+
+    margin-right: 5px;
+}
+.center-vertical {
+    transform: translateY(15%);
+
+}
+.logedUser {
+    text-align: right;
+    margin-right: 5%;
+    margin-top: 2%;
+    font-size: 25px;   
+    font-family: 'Raleway', sans-serif;
+}
+.car {
+    width: 1000px;
+    margin: 0 auto;
+    height: 350px;
+    border: 2px solid #BFBFBF;
+    border-radius: 15px;
+    margin-top: 1%;
+}
+.carName {
+    width: 50%;
+    height: 20%;
+    float: left;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 35px;
+}
+.carImg {
+
+    width: 50%;
+    height: 80%;
+    float: left;
+    padding-left: 3%;
+}
+.carPrice {
+    width: 50%;
+    height: 20%;
+    float: right;
+    text-align: center;
+    font-size: 35px;
+    padding-top: 1%;
+}
+.carEquipment {
+    width: 50%;
+    height: 50%;
+    float: right;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+}
+.carBtn {
+    width: 50%;
+    height: 30%;
+    float: right;
+    text-align: center;
+}
+.errorLog {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: red;
+    margin-left: 17%;
+}

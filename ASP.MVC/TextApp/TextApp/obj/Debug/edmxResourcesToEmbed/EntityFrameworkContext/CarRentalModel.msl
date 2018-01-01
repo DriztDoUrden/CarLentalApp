@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CarsDBModelStoreContainer" CdmEntityContainer="CarsDBEntities">
+    <EntitySetMapping Name="TCars">
+      <EntityTypeMapping TypeName="CarsDBModel.TCars">
+        <MappingFragment StoreEntitySet="TCars">
+          <ScalarProperty Name="Engine" ColumnName="Engine" />
+          <ScalarProperty Name="NumberOf" ColumnName="NumberOf" />
+          <ScalarProperty Name="IsAvaiable" ColumnName="IsAvaiable" />
+          <ScalarProperty Name="Airbag" ColumnName="Airbag" />
+          <ScalarProperty Name="Transmission" ColumnName="Transmission" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="ImageSource" ColumnName="ImageSource" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOrderHistory">
+      <EntityTypeMapping TypeName="CarsDBModel.TOrderHistory">
+        <MappingFragment StoreEntitySet="TOrderHistory">
+          <ScalarProperty Name="AmountOfOrder" ColumnName="AmountOfOrder" />
+          <ScalarProperty Name="AdditionalInformations" ColumnName="AdditionalInformations" />
+          <ScalarProperty Name="DataEnd" ColumnName="DataEnd" />
+          <ScalarProperty Name="DataStart" ColumnName="DataStart" />
+          <ScalarProperty Name="Car_id" ColumnName="Car_id" />
+          <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOrders">
+      <EntityTypeMapping TypeName="CarsDBModel.TOrders">
+        <MappingFragment StoreEntitySet="TOrders">
+          <ScalarProperty Name="AmountOfOrder" ColumnName="AmountOfOrder" />
+          <ScalarProperty Name="AdditionalInformations" ColumnName="AdditionalInformations" />
+          <ScalarProperty Name="DataEnd" ColumnName="DataEnd" />
+          <ScalarProperty Name="DataStart" ColumnName="DataStart" />
+          <ScalarProperty Name="Car_id" ColumnName="Car_id" />
+          <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderHistoryView">
+      <EntityTypeMapping TypeName="CarsDBModel.OrderHistoryView">
+        <MappingFragment StoreEntitySet="OrderHistoryView">
+          <ScalarProperty Name="AmountOfOrder" ColumnName="AmountOfOrder" />
+          <ScalarProperty Name="AdditionalInformations" ColumnName="AdditionalInformations" />
+          <ScalarProperty Name="DataEnd" ColumnName="DataEnd" />
+          <ScalarProperty Name="DataStart" ColumnName="DataStart" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderView">
+      <EntityTypeMapping TypeName="CarsDBModel.OrderView">
+        <MappingFragment StoreEntitySet="OrderView">
+          <ScalarProperty Name="AmountOfOrder" ColumnName="AmountOfOrder" />
+          <ScalarProperty Name="AdditionalInformations" ColumnName="AdditionalInformations" />
+          <ScalarProperty Name="DataEnd" ColumnName="DataEnd" />
+          <ScalarProperty Name="DataStart" ColumnName="DataStart" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TClients">
+      <EntityTypeMapping TypeName="CarsDBModel.TClients">
+        <MappingFragment StoreEntitySet="TClients">
+          <ScalarProperty Name="Function" ColumnName="Function" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

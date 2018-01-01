@@ -1,0 +1,84 @@
+﻿@model TextApp.Models.TCars
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3 style="text-align:center;">Are you sure you want to delete this car?</h3>
+<div class="DetailsPanel">
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageSource)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageSource)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transmission)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transmission)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Engine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Engine)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Airbag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Airbag)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color btnframe">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <button class="btn btn-primary">@Html.ActionLink("Back to List", "Index", null, new { @style = "text-decoration: none;color:white;" })</button>
+        </div>
+    }
+</div>

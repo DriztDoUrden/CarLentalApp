@@ -1,0 +1,61 @@
+﻿@using TextApp.EntityFrameworkContext
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Car Lental App</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="~/mystyle.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+
+<body class="bckground">
+    <div class="headerPage"><a style="text-decoration: none" href="@Url.Action("Index","Home")">Welcome in Car Lental </a></div>
+    <div class="logedUser">
+        @if (Session["Username"] == null)
+        {
+            Session["Username"] = "";
+        } 
+        @if (Session["Username"].ToString().Length > 2)
+        {
+            <div>
+                <p>Hello @Session["Username"].ToString()</p>
+                <a class="btn btn-primary" href="@Url.Action("LogOut", "Home")">Logout</a>
+                @if (Session["Userfunc"].ToString() == "admin")
+                {
+                    <a class="btn btn-primary" href="@Url.Action("AdminPanel", "Home")">Admin panel</a>
+                }
+            </div>
+        }
+        else
+        {
+            <div>
+                <a class="btn btn-primary" href="@Url.Action("Login", "Home")">Login</a>
+                <a class="btn btn-primary" href="@Url.Action("Register", "Home")">Register</a>
+            </div>
+        }
+    </div>
+    <div style="margin-top:3%"> </div>
+    <!---<nav>
+        <ul style="list-style-type: none;text-align: center">
+            <li><a class="ClientCarBtns" href="@Url.Action("Index","TClients")">Clients Table</a></li>
+            <li><a class="ClientCarBtns" href="@Url.Action("Index","TCars")">Cars Table</a></li>
+        </ul>
+    </nav>
+    -->
+    <div>
+        @RenderBody()
+
+        <footer style="float: right; margin-right:2%">
+            <p>&copy; @DateTime.Now.Year - Car Lental Application</p>
+        </footer>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+</html>

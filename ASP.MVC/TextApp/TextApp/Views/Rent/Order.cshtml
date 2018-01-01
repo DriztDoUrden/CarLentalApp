@@ -1,0 +1,139 @@
+﻿@model TextApp.Models.FinalOrder
+
+    @if (Session["UserID"] !=null && Session["UserID"].ToString() != null)
+{
+    
+    <body>
+
+        @using (Html.BeginForm("Order", "Rent", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.car.Model)
+            @Html.HiddenFor(model => model.car.Mark)
+            @Html.HiddenFor(model => model.car.Engine)
+            @Html.HiddenFor(model => model.car.Price)
+            @Html.HiddenFor(model => model.car.ImageSource)
+            @Html.HiddenFor(model => model.car.Year)
+            @Html.HiddenFor(model => model.car.Transmission)
+            @Html.HiddenFor(model => model.car.Airbag)
+            @Html.HiddenFor(model => model.car.Id)
+
+            <div class="FinalOrder greybck">
+                <div class="FinalTitle">
+                    <p>Order Sumary</p>
+                </div>
+
+                <div class="FinalData">
+                    <p>Name: @Session["UserName"]</p>
+                    <p>Surname: @Session["UserSurname"]</p>
+                    <p>Telephone: @Session["UserPhone"]</p>
+                    <p>Email: @Session["UserEmail"]</p>
+                    @Html.TextAreaFor(model => model.Text, new
+               {
+                   style = "width:90%;",
+                   rows = "8",
+                   placeholder = "Additional information your about order",
+               })
+                </div>
+
+                <div class="FinalImg">
+                    <p>@Model.car.Mark @Model.car.Model</p>
+                    <img src="@Url.Content(@Model.car.ImageSource.ToString())" />
+                </div>
+
+                <div class="FinalDateTime" id="FinalDateTime">
+                    <p style="float:left; margin-right: 1%; margin-top: 1%;">Pick up:</p>
+                    @Html.TextBoxFor(model => model.DateStart, new
+               { style = "float:left;margin-right:5%", type = "datetime",placeholder="Starting date", id = "DateStart", name = "DateStart", @readonly = "readonly", @class = "glyphicon glyphicon-calendar" })
+                    <p style="float:left;margin-right: 1%; margin-top: 1%;">Return:</p>
+                    @Html.TextBoxFor(model => model.DateEnd, new
+                    {style = "float:left;margin-right:5%", type = "datetime",placeholder="Return date", id = "DateEnd", name = "DateEnd", @readonly = "readonly",@class = "glyphicon glyphicon-calendar" })
+                </div>
+
+                <div class="FinalSumary" id="ToRefresh">
+                    <label style="margin-right:1%">Number of days: </label><label id="punkt"></label>
+                    <br />
+                    <label style="margin-right:1%">Total price: </label>
+                    @Html.TextBoxFor(model => model.TotalPrice, new
+                    { style = "width:10%;border-radius: 20px;text-align:center;border:none", id = "Total", @readonly = "readonly" }) PLN
+                    <br />
+                    <button type="submit" class="glass_danger" disabled style="width: 15%; color:white;" id="RentBtn">Rent</button>
+                </div>
+            </div>
+        }
+    </body>
+
+}
+<script>
+    $(function () {
+        $("#DateStart").datepicker();
+        $("#DateEnd").datepicker();
+    });
+    $("#ToRefresh").mouseenter(function () {
+        if (document.getElementById("RentBtn").disabled == true)
+        {
+            var div = $("#RentBtn");
+            div.animate({ opacity: '0.01' }, "slow");
+        }
+    },5000);
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#ToRefresh').load(location.href + ' #ToRefresh');
+        Result();
+        refresh();
+    });
+
+    function refresh() {
+        setTimeout(function() {
+            $('#ToRefresh').load(location.href + ' #ToRefresh');
+            refresh();
+            },1000000
+        );
+    }
+</script>
+<script type="text/javascript">
+    function Result() {
+        var TotalPrice = parseInt(@Model.car.Price);
+        var Start = document.getElementById("DateStart").value;
+        var End = document.getElementById("DateEnd").value;
+        var StartD = Date.parse(Start);
+        var EndD = Date.parse(End);
+        var now = new Date();
+        if (Start <= "0002-01-01" || End < "0002-01-01")
+        {
+            document.getElementById("DateEnd").value = "Return date";
+            document.getElementById("DateStart").value = "Start date";
+
+        }
+        if (StartD < now.getTime() || StartD == null || EndD < now.getTime() || EndD == null || EndD <= StartD)
+        {
+            document.getElementById("punkt").innerHTML = "Wrong date format!";
+            document.getElementById("punkt").style.color = "red";
+            document.getElementById("RentBtn").disabled = true;
+            document.getElementById("RentBtn").classList.remove("glass_success");
+            document.getElementById("RentBtn").classList.add("glass_danger");
+
+        }
+        else {
+            document.getElementById("punkt").style.color = "black";
+            var DayStart = parseInt(String(Start).substring(3, 5));
+            var DayEnd = parseInt(String(End).substring(3, 5));
+            var MonthStart = parseInt(String(Start).substring(0, 3));
+            var MonthEnd = parseInt(String(End).substring(0, 3));
+            var ResultDate = (DayEnd - DayStart) + 30 * (MonthEnd - MonthStart);
+            if (ResultDate >= 1) {
+                document.getElementById("punkt").innerHTML = ResultDate;
+                TotalPrice *= ResultDate;
+                document.getElementById("Total").value = TotalPrice;
+                document.getElementById("RentBtn").disabled = false;
+                document.getElementById("RentBtn").classList.remove("glass_danger");
+                document.getElementById("RentBtn").classList.add("glass_success");
+            }
+        }
+        setTimeout("Result()", 1000);
+
+        // ten kalendarz ma duzo bugów, jednak nie działa aktualnie biblioteka moment()
+        // do poprawy w wolnej chwili
+    }
+</script>

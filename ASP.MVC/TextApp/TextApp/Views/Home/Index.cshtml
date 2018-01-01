@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TextApp.Models.TCars>
+
+@foreach (var item in Model)
+{
+    <div class="car">
+        <div class="carName">
+            <p>@item.Mark @item.Model</p>
+        </div>
+        <div class="carPrice">
+            <p>@item.Price$/day</p>
+        </div>
+        <div class="carEquipment">
+            <p>Engine: @item.Engine</p>
+            <p>Year: @item.Year</p>
+            <p>Transmission gear: @item.Transmission</p>
+            <p>Airbag: @item.Airbag</p>
+        </div>
+        <div class="carImg">
+            <img src="@Url.Content(@item.ImageSource.ToString())" />
+        </div>
+        <div class="carBtn">
+            @if(item.IsAvaiable!=true)
+            {
+            <button class="disabled glass_danger" style="width: 60%; height: 55%">Car is not avaiable</button>
+            }
+            else if (Session["Login"] != null && Session["Login"].ToString().Length > 2)
+            {
+                <button class="glass_rent" style="width: 60%; height: 55%;" id="rentBtn">@Html.ActionLink("Rent", "Order", "Rent", @item, new {@style = "text-decoration: none;color:white;"})</button>
+            }
+            else
+            {
+                <button class="disabled glass_danger" style="width: 60%; height: 55%">You must be logged to rent a car</button>
+            }
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $(".car").mouseenter(function () {
+            $(this).css("background-color", "rgba(0,0, 0, 0.1)");
+        });
+        $(".car").mouseleave(function () {
+            $(this).css("background-color", "rgba(0,0, 0, 0.05)");
+        });
+    });
+</script>

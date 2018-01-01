@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CarsDBEntities-Web.config Connection String" description="CarsDBEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/EntityFrameworkContext.CarRentalModel.csdl|res://*/EntityFrameworkContext.CarRentalModel.ssdl|res://*/EntityFrameworkContext.CarRentalModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\CarsDB.mdf;integrated security=True;connect timeout=30;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\ASP\.MVC\\TextApp\\TextApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CarsDBEntities']/@connectionString" />
+  </parameter>
+</parameters>

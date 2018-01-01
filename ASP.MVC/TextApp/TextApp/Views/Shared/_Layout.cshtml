@@ -1,0 +1,89 @@
+﻿@using TextApp.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Car Lental App</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="~/mystyle.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function s() {
+            $("#samochodzik").animate({
+                left: '95%'
+            }, {
+                queue: false,
+                duration: 10000,
+                complete: function () {
+                    $("#samochodzik").css("transform", "scale(-1, 1)");
+                    $("#samochodzik").animate({
+                        left: '0'
+                    }, {
+                        queue: false,
+                        duration: 10000,
+                        complete: function () {
+                            $("#samochodzik").css("transform", "scale(1, 1)");
+                            s();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body class="bckground" onload="s()">
+
+    <img src="~/Images/beetle.png" id="samochodzik" style="position : absolute; left : 0;"/>
+    <div class="headerPage"><a style="text-decoration: none" href="@Url.Action("Index","Home")">Car Lental </a></div>
+    <div class="logedUser">
+        @if (Session["Username"] == null)
+        {
+            Session["Username"] = "";
+        } 
+        @if (Session["UserFunc"] != null && Session["UserFunc"].ToString().Equals("admin"))
+        {
+            <div>
+                <p>Hello @Session["Login"].ToString() <img src="@Url.Content(Session["UserImg"].ToString())"/></p>
+                <a class="btn btn-primary" href="@Url.Action("LogOut", "Home")">Logout</a>
+                <a class="btn btn-primary" href="@Url.Action("AdminPanel", "Home")">Admin panel</a>
+            </div>
+        }
+        else if (Session["UserFunc"] != null && Session["UserFunc"].ToString().Equals("user"))
+        {
+            <div>
+                <p>Hello @Session["Login"].ToString() <img src="@Url.Content(Session["UserImg"].ToString())" /></p>
+                <a class="btn btn-primary" href="@Url.Action("LogOut", "Home")">Logout</a>
+                <a class="btn btn-primary" href="@Url.Action("UserPanel", "Home")">User panel</a>
+            </div>
+        }
+        else
+        {
+            <div>
+                <a class="btn btn-primary" href="@Url.Action("Login", "Home")">Login</a>
+                <a class="btn btn-primary" href="@Url.Action("Register", "Home")">Register</a>
+            </div>
+        }
+    </div>
+    <div style="margin-top:3%"> </div>
+    <div>
+        @RenderBody()
+
+        <footer style="float: right; margin-right: 1%;">
+            <p>&copy; @DateTime.Now.Year - Car Lental Application</p>
+        </footer>
+    </div>
+
+</body>
+</html>

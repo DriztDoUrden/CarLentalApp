@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CarsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TCars">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mark" Type="text" />
+          <Property Name="Model" Type="text" />
+          <Property Name="Price" Type="int" />
+          <Property Name="ImageSource" Type="text" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Transmission" Type="text" />
+          <Property Name="Airbag" Type="int" />
+          <Property Name="IsAvaiable" Type="bit" />
+          <Property Name="NumberOf" Type="int" />
+          <Property Name="Engine" Type="text" />
+        </EntityType>
+        <EntityType Name="TClients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="Telephone" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Login" Type="varchar" MaxLength="250" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Avatar" Type="varchar" MaxLength="150" />
+          <Property Name="Function" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TOrderHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_id" Type="int" Nullable="false" />
+          <Property Name="Car_id" Type="int" Nullable="false" />
+          <Property Name="DataStart" Type="datetime" Nullable="false" />
+          <Property Name="DataEnd" Type="datetime" Nullable="false" />
+          <Property Name="AdditionalInformations" Type="varchar" MaxLength="950" Nullable="false" />
+          <Property Name="AmountOfOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_id" Type="int" Nullable="false" />
+          <Property Name="Car_id" Type="int" Nullable="false" />
+          <Property Name="DataStart" Type="datetime" Nullable="false" />
+          <Property Name="DataEnd" Type="datetime" Nullable="false" />
+          <Property Name="AdditionalInformations" Type="varchar" MaxLength="1000" />
+          <Property Name="AmountOfOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CarsDB.dbo.OrderHistoryView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OrderHistoryView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="DataStart" />
+            <PropertyRef Name="DataEnd" />
+            <PropertyRef Name="AdditionalInformations" />
+            <PropertyRef Name="AmountOfOrder" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="250" />
+          <Property Name="Mark" Type="text" />
+          <Property Name="Model" Type="text" />
+          <Property Name="DataStart" Type="datetime" Nullable="false" />
+          <Property Name="DataEnd" Type="datetime" Nullable="false" />
+          <Property Name="AdditionalInformations" Type="varchar" MaxLength="950" Nullable="false" />
+          <Property Name="AmountOfOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CarsDB.dbo.OrderView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OrderView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="DataStart" />
+            <PropertyRef Name="DataEnd" />
+            <PropertyRef Name="AmountOfOrder" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="250" />
+          <Property Name="Mark" Type="text" />
+          <Property Name="Model" Type="text" />
+          <Property Name="DataStart" Type="datetime" Nullable="false" />
+          <Property Name="DataEnd" Type="datetime" Nullable="false" />
+          <Property Name="AdditionalInformations" Type="varchar" MaxLength="1000" />
+          <Property Name="AmountOfOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CarsDBModelStoreContainer">
+          <EntitySet Name="TCars" EntityType="Self.TCars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TClients" EntityType="Self.TClients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOrderHistory" EntityType="Self.TOrderHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOrders" EntityType="Self.TOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderHistoryView" EntityType="Self.OrderHistoryView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OrderHistoryView].[Id] AS [Id], 
+    [OrderHistoryView].[Login] AS [Login], 
+    [OrderHistoryView].[Mark] AS [Mark], 
+    [OrderHistoryView].[Model] AS [Model], 
+    [OrderHistoryView].[DataStart] AS [DataStart], 
+    [OrderHistoryView].[DataEnd] AS [DataEnd], 
+    [OrderHistoryView].[AdditionalInformations] AS [AdditionalInformations], 
+    [OrderHistoryView].[AmountOfOrder] AS [AmountOfOrder]
+    FROM [dbo].[OrderHistoryView] AS [OrderHistoryView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="OrderView" EntityType="Self.OrderView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OrderView].[Id] AS [Id], 
+    [OrderView].[Login] AS [Login], 
+    [OrderView].[Mark] AS [Mark], 
+    [OrderView].[Model] AS [Model], 
+    [OrderView].[DataStart] AS [DataStart], 
+    [OrderView].[DataEnd] AS [DataEnd], 
+    [OrderView].[AdditionalInformations] AS [AdditionalInformations], 
+    [OrderView].[AmountOfOrder] AS [AmountOfOrder]
+    FROM [dbo].[OrderView] AS [OrderView]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CarsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TCars" EntityType="CarsDBModel.TCars" />
+          <EntitySet Name="TOrderHistory" EntityType="CarsDBModel.TOrderHistory" />
+          <EntitySet Name="TOrders" EntityType="CarsDBModel.TOrders" />
+          <EntitySet Name="OrderHistoryView" EntityType="CarsDBModel.OrderHistoryView" />
+          <EntitySet Name="OrderView" EntityType="CarsDBModel.OrderView" />
+          <EntitySet Name="TClients" EntityType="CarsDBModel.TClients" />
+        </EntityContainer>
+        <EntityType Name="TCars">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="ImageSource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Transmission" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Airbag" Type="Int32" />
+          <Property Name="IsAvaiable" Type="Boolean" />
+          <Property Name="NumberOf" Type="Int32" />
+          <Property Name="Engine" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TOrderHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_id" Type="Int32" Nullable="false" />
+          <Property Name="Car_id" Type="Int32" Nullable="false" />
+          <Property Name="DataStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AdditionalInformations" Type="String" Nullable="false" MaxLength="950" FixedLength="false" Unicode="false" />
+          <Property Name="AmountOfOrder" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_id" Type="Int32" Nullable="false" />
+          <Property Name="Car_id" Type="Int32" Nullable="false" />
+          <Property Name="DataStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AdditionalInformations" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="AmountOfOrder" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderHistoryView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="DataStart" />
+            <PropertyRef Name="DataEnd" />
+            <PropertyRef Name="AdditionalInformations" />
+            <PropertyRef Name="AmountOfOrder" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Mark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AdditionalInformations" Type="String" Nullable="false" MaxLength="950" FixedLength="false" Unicode="false" />
+          <Property Name="AmountOfOrder" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="DataStart" />
+            <PropertyRef Name="DataEnd" />
+            <PropertyRef Name="AmountOfOrder" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Mark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AdditionalInformations" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="AmountOfOrder" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EnumType Name="Funkcje">
+          <Member Name="user" />
+          <Member Name="admin" />
+        </EnumType>
+        <EntityType Name="TClients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Function" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarsDBModelStoreContainer" CdmEntityContainer="CarsDBEntities">
+          <EntitySetMapping Name="TCars">
+            <EntityTypeMapping TypeName="CarsDBModel.TCars">
+              <MappingFragment StoreEntitySet="TCars">
+                <ScalarProperty Name="Engine" ColumnName="Engine" />
+                <ScalarProperty Name="NumberOf" ColumnName="NumberOf" />
+                <ScalarProperty Name="IsAvaiable" ColumnName="IsAvaiable" />
+                <ScalarProperty Name="Airbag" ColumnName="Airbag" />
+                <ScalarProperty Name="Transmission" ColumnName="Transmission" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ImageSource" ColumnName="ImageSource" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOrderHistory">
+            <EntityTypeMapping TypeName="CarsDBModel.TOrderHistory">
+              <MappingFragment StoreEntitySet="TOrderHistory">
+                <ScalarProperty Name="AmountOfOrder" ColumnName="AmountOfOrder" />
+                <ScalarProperty Name="AdditionalInformations" ColumnName="AdditionalInformations" />
+                <ScalarProperty Name="DataEnd" ColumnName="DataEnd" />
+                <ScalarProperty Name="DataStart" ColumnName="DataStart" />
+                <ScalarProperty Name="Car_id" ColumnName="Car_id" />
+                <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOrders">
+            <EntityTypeMapping TypeName="CarsDBModel.TOrders">
+              <MappingFragment StoreEntitySet="TOrders">
+                <ScalarProperty Name="AmountOfOrder" ColumnName="AmountOfOrder" />
+                <ScalarProperty Name="AdditionalInformations" ColumnName="AdditionalInformations" />
+                <ScalarProperty Name="DataEnd" ColumnName="DataEnd" />
+                <ScalarProperty Name="DataStart" ColumnName="DataStart" />
+                <ScalarProperty Name="Car_id" ColumnName="Car_id" />
+                <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderHistoryView">
+            <EntityTypeMapping TypeName="CarsDBModel.OrderHistoryView">
+              <MappingFragment StoreEntitySet="OrderHistoryView">
+                <ScalarProperty Name="AmountOfOrder" ColumnName="AmountOfOrder" />
+                <ScalarProperty Name="AdditionalInformations" ColumnName="AdditionalInformations" />
+                <ScalarProperty Name="DataEnd" ColumnName="DataEnd" />
+                <ScalarProperty Name="DataStart" ColumnName="DataStart" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderView">
+            <EntityTypeMapping TypeName="CarsDBModel.OrderView">
+              <MappingFragment StoreEntitySet="OrderView">
+                <ScalarProperty Name="AmountOfOrder" ColumnName="AmountOfOrder" />
+                <ScalarProperty Name="AdditionalInformations" ColumnName="AdditionalInformations" />
+                <ScalarProperty Name="DataEnd" ColumnName="DataEnd" />
+                <ScalarProperty Name="DataStart" ColumnName="DataStart" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TClients">
+            <EntityTypeMapping TypeName="CarsDBModel.TClients">
+              <MappingFragment StoreEntitySet="TClients">
+                <ScalarProperty Name="Function" ColumnName="Function" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

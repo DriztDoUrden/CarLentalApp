@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CarsDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TCars" EntityType="CarsDBModel.TCars" />
+    <EntitySet Name="TOrderHistory" EntityType="CarsDBModel.TOrderHistory" />
+    <EntitySet Name="TOrders" EntityType="CarsDBModel.TOrders" />
+    <EntitySet Name="OrderHistoryView" EntityType="CarsDBModel.OrderHistoryView" />
+    <EntitySet Name="OrderView" EntityType="CarsDBModel.OrderView" />
+    <EntitySet Name="TClients" EntityType="CarsDBModel.TClients" />
+  </EntityContainer>
+  <EntityType Name="TCars">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="ImageSource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Transmission" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Airbag" Type="Int32" />
+    <Property Name="IsAvaiable" Type="Boolean" />
+    <Property Name="NumberOf" Type="Int32" />
+    <Property Name="Engine" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TOrderHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Client_id" Type="Int32" Nullable="false" />
+    <Property Name="Car_id" Type="Int32" Nullable="false" />
+    <Property Name="DataStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AdditionalInformations" Type="String" Nullable="false" MaxLength="950" FixedLength="false" Unicode="false" />
+    <Property Name="AmountOfOrder" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TOrders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Client_id" Type="Int32" Nullable="false" />
+    <Property Name="Car_id" Type="Int32" Nullable="false" />
+    <Property Name="DataStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AdditionalInformations" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="AmountOfOrder" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderHistoryView">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="DataStart" />
+      <PropertyRef Name="DataEnd" />
+      <PropertyRef Name="AdditionalInformations" />
+      <PropertyRef Name="AmountOfOrder" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Mark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DataStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AdditionalInformations" Type="String" Nullable="false" MaxLength="950" FixedLength="false" Unicode="false" />
+    <Property Name="AmountOfOrder" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderView">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="DataStart" />
+      <PropertyRef Name="DataEnd" />
+      <PropertyRef Name="AmountOfOrder" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Mark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DataStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AdditionalInformations" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="AmountOfOrder" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EnumType Name="Funkcje">
+    <Member Name="user" />
+    <Member Name="admin" />
+  </EnumType>
+  <EntityType Name="TClients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Login" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Avatar" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Function" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TextApp.EntityFrameworkContext.TCars>
+
+@{
+    ViewBag.Title = "Index";
+}
+<nav>
+    <ul style="list-style-type: none;text-align: center">
+        <li><a class="ClientCarBtns" href="@Url.Action("Index","TClients")">Clients Table</a></li>
+        <li><a class="ClientCarBtns" href="@Url.Action("Index","TCars")">Cars Table</a></li>
+    </ul>
+</nav>
+<div class="no-color btnframe" style="margin-bottom: 5px;">
+    <button class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Mark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Engine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Transmission)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Airbag)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr style="position: relative;">
+        <td class="center-vertical">
+            @Html.DisplayFor(modelItem => item.Mark)
+        </td>
+        <td class="center-vertical">
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td class="center-vertical">
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td class="center-vertical">
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td class="center-vertical">
+            @Html.DisplayFor(modelItem => item.Engine)
+        </td>
+        <td class="center-vertical">
+            @Html.DisplayFor(modelItem => item.Transmission)
+        </td>
+        <td class="center-vertical">
+            @Html.DisplayFor(modelItem => item.Airbag)
+        </td>
+        <td>
+            <div class="no-color btnframe" style="float: left;">
+                <button class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.Id }) </button>
+            </div>
+            <div class="no-color btnframe" style="float: left;">
+                <button class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
+            </div>
+            <div class="no-color btnframe">
+                <button class="btn btn-default">@Html.ActionLink("Delete", "Delete", new { id = item.Id })</button>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<TextApp.Models.OrderHistoryView>
+
+<nav>
+    <ul style="list-style-type: none;text-align: center">
+        <li><a class="ClientCarBtns" href="@Url.Action("Index","TClients")">Users Table</a></li>
+        <li><a class="ClientCarBtns" href="@Url.Action("Index","TCars")">Cars Table</a></li>
+        <li><a class="ClientCarBtns" href="@Url.Action("Index","TOrders")">Current Orders</a></li>
+        <li><a class="ClientCarBtns" href="@Url.Action("OrderHistory","TOrders")">Orders History</a></li>
+    </ul>
+</nav>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdditionalInformations)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountOfOrder)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="position: relative;" class="record">
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.DataStart)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.DataEnd)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.AdditionalInformations)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.AmountOfOrder)
+            </td>
+            <td>
+                <div class="no-color btnframe" style="float: left;">
+                    <button class="btn editBtn">@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @style = "text-decoration: none;color:white;" }) </button>
+                </div>
+                <div class="no-color btnframe" style="float: left;">
+                    <button class="btn detailsBtn">@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @style = "text-decoration: none;color:white;" }) </button>
+                </div>
+                <div class="no-color btnframe" style="float: left;">
+                    <button class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @style = "text-decoration: none;color:white;" })</button>
+                </div>    
+            </td>
+        </tr>
+    }
+</table>
+<script>
+    $(document).ready(function () {
+        $(".record").mouseenter(function () {
+            $(this).css("background-color", "rgba(0,0, 0, 0.1)");
+        });
+        $(".record").mouseleave(function () {
+            $(this).css("background-color", "rgba(0,0, 0, 0.0001)");
+        });
+    });
+</script>

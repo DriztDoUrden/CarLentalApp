@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TextApp.EntityFrameworkContext.TCars>
+
+
+
+@foreach (var item in Model)
+{
+    <div class="car">
+        <div class="carName">
+            <p>@item.Mark @item.Model</p>
+        </div>
+        <div class="carPrice">
+            <p>@item.Price$/day</p>
+        </div>
+        <div class="carEquipment">
+            <p>Engine: @item.Engine</p>
+            <p>Year: @item.Year</p>
+            <p>Transmission gear: @item.Transmission</p>
+            <p>Airbag: @item.Airbag</p>
+        </div>
+        <div class="carImg">
+            <img src="@Url.Content(@item.ImageSource.ToString())" />
+        </div>
+        <div class="carBtn">
+            <button type="button" class="btn btn-info" style="width: 60%;height:55%">Rent</button>
+        </div>
+    </div>
+}
+

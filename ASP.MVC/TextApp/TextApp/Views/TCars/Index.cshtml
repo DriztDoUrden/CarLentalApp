@@ -1,0 +1,91 @@
+﻿@model IEnumerable<TextApp.Models.TCars>
+
+@{
+    ViewBag.Title = "Index";
+}
+<nav>
+    <ul style="list-style-type: none;text-align: center">
+        <li><a class="ClientCarBtns" href="@Url.Action("Index","TClients")">Users Table</a></li>
+        <li><a class="ClientCarBtns" href="@Url.Action("Index","TCars")">Cars Table</a></li>
+        <li><a class="ClientCarBtns" href="@Url.Action("Index","TOrders")">Current Orders</a></li>
+        <li><a class="ClientCarBtns" href="@Url.Action("OrderHistory","TOrders")">Orders History</a></li>
+    </ul>
+</nav>  
+<div class="no-color btnframe" style="margin-bottom: 5px;">
+    <button class="btn btn-success" style="margin-left:0.5%">@Html.ActionLink("Create New", "Create", null, new { @style = "text-decoration: none;color:white;" })</button>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Mark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Engine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Transmission)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Airbag)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+        <tr style="position: relative;" class="record">
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Engine)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Transmission)
+            </td>
+            <td class="center-vertical">
+                @Html.DisplayFor(modelItem => item.Airbag)
+            </td>
+            <td>
+                <div class="no-color btnframe" style="float: left;">
+                    <button class="btn editBtn">@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @style = "text-decoration: none;color:white;" }) </button>
+                </div>
+                <div class="no-color btnframe" style="float: left;">
+                    <button class="btn detailsBtn">@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @style = "text-decoration: none;color:white;" }) </button>
+                </div>
+                <div class="no-color btnframe">
+                    <button class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @style = "text-decoration: none;color:white;" })</button>
+                </div>
+            </td>
+        </tr>
+}
+
+</table>
+<script>
+    $(document).ready(function () {
+        $(".record").mouseenter(function () {
+            $(this).css("background-color", "rgba(0,0, 0, 0.1)");
+        });
+        $(".record").mouseleave(function () {
+            $(this).css("background-color", "rgba(0,0, 0, 0.0001)");
+        });
+    });
+</script>

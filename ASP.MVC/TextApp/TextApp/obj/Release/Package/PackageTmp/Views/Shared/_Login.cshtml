@@ -1,0 +1,6 @@
+﻿@using TextApp.EntityFrameworkContext
+@model IEnumerable<TextApp.EntityFrameworkContext.TUsers>
+@{
+    CarsDBEntities db = new CarsDBEntities();
+    db.TCars.ToList();
+}
